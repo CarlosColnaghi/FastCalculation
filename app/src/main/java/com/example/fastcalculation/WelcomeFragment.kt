@@ -28,6 +28,9 @@ class WelcomeFragment : Fragment() {
         "${getString(R.string.welcome)}, ${settings.playerName}!".also {
             fragmentWelcomeBinding.welcomeTextView.text = it
         }
+        fragmentWelcomeBinding.playButton.setOnClickListener {
+            (context as OnPlayGame).onPlayGame()
+        }
         return fragmentWelcomeBinding.root
     }
 

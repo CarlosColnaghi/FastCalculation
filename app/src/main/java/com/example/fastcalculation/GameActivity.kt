@@ -3,14 +3,11 @@ package com.example.fastcalculation
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.fastcalculation.Extras.EXTRA_SETTINGS
 import com.example.fastcalculation.databinding.ActivityGameBinding
 
-class GameActivity : AppCompatActivity() {
+class GameActivity : AppCompatActivity(), OnPlayGame {
     private val activityGameActivity: ActivityGameBinding by lazy{
         ActivityGameBinding.inflate(layoutInflater)
     }
@@ -36,12 +33,19 @@ class GameActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-            R.id.restartGameMenu -> true
+            R.id.restartGameMenu -> {
+                onPlayGame()
+                true
+            }
             R.id.exitGameMenu -> {
                 finish()
                 true
             }
             else -> false
         }
+    }
+
+    override fun onPlayGame() {
+        supportFragmentManager.beginTransaction().replace(R.id.gameFrameLayout, GameFragment.newInstance(settings)).commit()
     }
 }
