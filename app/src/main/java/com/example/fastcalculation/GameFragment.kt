@@ -88,7 +88,7 @@ class GameFragment : Fragment() {
             roundDeadLineHandler.sendEmptyMessageDelayed(MESSAGE_ROUND_DEADLINE, settings.roundInterval)
         }else{
             fragmentGameBinding.apply {
-                (context as OnPlayGame).showResult( hits * 10f / (totalGameTime / 1000L))
+                (context as OnPlayGame).showResult(hits * 10f / (totalGameTime / 1000L))
             }
         }
     }
