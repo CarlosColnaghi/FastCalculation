@@ -1,6 +1,9 @@
 package com.example.fastcalculation
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +19,13 @@ class GameFragment : Fragment() {
     private var startRoundTime = 0L
     private var totalGameTime = 0L
     private var hits = 0
+    private val roundDeadLineHandler = object : Handler(Looper.getMainLooper()){
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            totalGameTime += settings.roundInterval
+            play()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +49,7 @@ class GameFragment : Fragment() {
                 totalGameTime += settings.roundInterval
                 hits--
             }
+            roundDeadLineHandler.removeMessages(MESSAGE_ROUND_DEADLINE)
             play()
         }
         fragmentGameBinding.apply {
@@ -51,6 +62,7 @@ class GameFragment : Fragment() {
     }
 
     companion object {
+        private const val MESSAGE_ROUND_DEADLINE = 0
         @JvmStatic
         fun newInstance(settings: Settings) =
             GameFragment().apply {
@@ -73,6 +85,7 @@ class GameFragment : Fragment() {
                 alternativeThreeButton.text = currentRound!!.alt3.toString()
             }
             startRoundTime = System.currentTimeMillis()
+            roundDeadLineHandler.sendEmptyMessageDelayed(MESSAGE_ROUND_DEADLINE, settings.roundInterval)
         }else{
             with(fragmentGameBinding){
                 roundTextView.text = getString(R.string.points)
