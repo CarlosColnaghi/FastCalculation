@@ -8,4 +8,4 @@
 
 ### Game Screen
 ![alt text](game-screen.png)
-![alt text](result-screen)
+![alt text](result-screen.png)
