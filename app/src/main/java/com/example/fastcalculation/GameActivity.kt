@@ -23,7 +23,7 @@ class GameActivity : AppCompatActivity(), OnPlayGame {
             subtitle = getString(R.string.game)
         }
         settings = intent.getParcelableExtra(EXTRA_SETTINGS) ?: Settings()
-        supportFragmentManager.beginTransaction().replace(R.id.gameFrameLayout, WelcomeFragment.newInstance(settings)).commit()
+        showWelcome()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -45,7 +45,14 @@ class GameActivity : AppCompatActivity(), OnPlayGame {
         }
     }
 
+    override fun showWelcome() {
+        supportFragmentManager.beginTransaction().replace(R.id.gameFrameLayout, WelcomeFragment.newInstance(settings)).commit()
+    }
     override fun onPlayGame() {
         supportFragmentManager.beginTransaction().replace(R.id.gameFrameLayout, GameFragment.newInstance(settings)).commit()
+    }
+
+    override fun showResult(result: Float) {
+        supportFragmentManager.beginTransaction().replace(R.id.gameFrameLayout, ResultFragment.newInstance(settings, result)).commit()
     }
 }
