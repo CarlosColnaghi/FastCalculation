@@ -26,6 +26,7 @@ class GameActivity : AppCompatActivity() {
             subtitle = getString(R.string.game)
         }
         settings = intent.getParcelableExtra(EXTRA_SETTINGS) ?: Settings()
+        supportFragmentManager.beginTransaction().replace(R.id.gameFrameLayout, WelcomeFragment.newInstance(settings)).commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
