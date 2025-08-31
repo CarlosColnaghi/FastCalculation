@@ -7,6 +7,7 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="titleTextColor">@color/colorOnPrimary</item>
         <item name="subtitleTextColor">@color/colorOnPrimary</item>
+        <item name="android:paddingTop">20dp</item>
     </style>
     <style name="SettingsView">
         <item name="android:layout_width">match_parent</item>
