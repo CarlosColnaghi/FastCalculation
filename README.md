@@ -1,11 +1,11 @@
 # Fast Calculation
 ## Screenchots
 ### Settings Screen
-![alt text](settings-screen.png)
+![settings screen](./images/settings-screen.png)
 
 ### Welcoming Screen
-![alt text](welcoming-screen.png)
+![welcoming screen](./images/welcoming-screen.png)
 
 ### Game Screen
-![alt text](game-screen.png)
-![alt text](result-screen.png)
+![game screen](./images/game-screen.png)
+![result screen](./images/result-screen.png)
